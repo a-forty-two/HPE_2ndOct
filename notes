@@ -1,0 +1,69 @@
+Machine Learning PIPELINE
+
+J(theta) -> another name for loss function
+
+L1 -> ridge -> very tiny number squared and added
+L2-> lasso -> very tiny number (not squared) and added
+Alpha-> elastic factor multiplied to ridge and lasso to get even tinier number
+Alpha along with L1 and L2 = Elastic = L1L2
+Regularisation-> only in training; not afterwards
+
+
+
+
+1. INGESTING 
+    1. Big data
+        1. Volume [GB/PT/TB], Variety [JSON, XML, parquet, SQL, CSV….], Velocity [Batch, Stream]
+        2. Data Lake- dumping yard 
+                    1. Hadoop, AWS S3, Google Cloud Storage, OneDrive, Google Drive, Dropbox, Azure Storage
+        3. Data Warehouse- structured (SQL)
+                    1. Hive, SQL Datawarehouse
+                    2. From Data Lake to DW:
+                    - [ ] ELT: Extract, LOAD into Data Lake/Warehouse and then keep transforming according to tasks! 
+                        - [ ] MULTIPLE use cases from same data
+                    - [ ] ETL: Extract, Transform, Load-> data is dirty, but we know the mission- only 1 USE case from the data
+                    - [ ] EL: Extract and Load-> data is clean 
+                            - [ ] From database to Power BI
+		
+
+
+1. Featurization:
+            1. Select RIGHT Columns!
+                        1. Correlations-> keep all positive and negative correlations; let go of ZERO correlation 
+                        2. Principal Component Analysis-> reduce the number of columns by combining them into a linear equation; and then select most important equations ONLY!
+            2. String values or Non-numerical values may be present!
+                    1. LABEL ENCODING: create a dictionary or all strings, and replace them with numbers
+                            1. Dependent or related data-> example: age groups [infants, kids, adults, elders], T-shirt sizes [XS, S, M, L, XL]
+                    2. One-Hot encoding: create a new column for every distinct value; and mark it 1 or 0 depending on value present 
+                            1. Independent (example: Cities, products, categories)
+            3. Cleaning the data
+                1. Missing Values/Null Values-> replace [Mean, Median, Mode, Custom Values] or remove [remove row/ column]
+                2. Try to remove outliers at this stage; otherwise later on is also OK!
+                        1. BOX PLOT/Box-Whisker plot-> detects outliers!
+            4. Same scale-> NORMALIZATION
+                        - [ ] MinMax-> (data-min) / (max-min) -> 0 to 1
+                        - [ ] Sigmoid -> log functions-> 0 to 1 [PROBABILITY use case]
+                                        - [ ] Outliers-> -3 becomes 0, 3 becomes1
+                        - [ ] TanH -> tangent hypotenuse -> -1 to 1 [profit/loss] 
+                                        - [ ] Outliers-> lower outliers become -1, upper outliers-> 1
+                        - [ ] Z-Scoring-> (data-mean)/standard_dev -> -inf to +inf, where < -3 or > 3 = OUTLIERS [ good idea to drop outliers or set them to MIN or MAX value] 
+                        - [ ] 
+2. ML Process
+            1. Cost function or Loss Function (METRICS)-> how to calculate the error
+                        1. Metrics-> units of measurement-> MSE, RMSE, AUC, Precision, Recall 
+                        2. Cost/Loss functions use metrics to calculate the error 
+                        3. We either Maximise metrics (Acc/Precision/Recall), or Minimise (RMSE, MSE, MAE) 
+            2. Optimiser function-> tells us HOW to reduce the loss the next time you learn! 
+                1. Managed by LEARNING Rate-> rate at which the model changes its learning-> IF its too high-> we skip the right answer; if its TOO low-> we never reach the right answer!
+                        1. Gradient Descent-> fix the learning rate, and keep minimising the COST function! 
+                        2. AdaGrad-> adaptive gradient -> if you are FAR away from correct answer, increase the LR. If you are CLOSE to the correct answer, decrease the LR 
+                        3. Adaptive Gradient with Momentum-> ADAM optimiser 
+
+
+
+Exam link: 
+
+
+shantanu.pandey@live.in
+
+
